@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= link_to 'Music Player', songs_path %></h2>
+
+
+<table>
+    <thread>
+    <tr>
+        <th>Categories</th>
+        
+    </tr>
+    </thread>
+    <tbody>
+        
+            <tr><td><a href="?sort=Town">Town</a></td></tr>
+            <tr><td><a href="?sort=Field">Field</a></td></tr>
+            <tr><td><a href="?sort=Battle">Battle</a></td></tr>
+            <tr><td><a href="?sort=Boss">Boss</a></td></tr>
+            <tr><td><a href="?sort=Vehicle">Vehicle</a></td></tr>
+            <tr><td><a href="?sort=Sanctuary">Sanctuary</a></td></tr>
+            <tr><td><a href="?sort=Dramatic">Dramatic</a></td></tr>
+            <tr><td><a href="?sort=Primal">Primal</a></td></tr>
+            
+        
+    </tbody>
+    
+</table>
+
+<br>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.name %></td>
+        <td><a href="?sort=<%= song.category %>"><%= song.category %></a></td>
+        <td><button type="button" onclick="PlayMusic('<%= song.youtube %>')">Play</button></td>
+        <td><button type="button" onclick="StopMusic()">Stop</button></td>
+        <td><%= link_to 'View', song %></td>   
+        <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<%= link_to 'New Song', new_song_path %>
+
+
+<div id="player"></div>
+
+<!--<iframe id="ytplayer" type="text/html" width="0" height="0"
+  src="http://www.youtube.com/embed/pEpIwurXnQQ?autoplay=1&loop=1&playlist=pEpIwurXnQQ"
+  frameborder="0"/> -->
+
+
+
+<script>
+
+function PlayMusic(url) {
+    
+    document.getElementById("player").innerHTML = "<iframe id='ytplayer' type='text/html' width='0' height='0' src='http://www.youtube.com/embed/" + url + "?autoplay=1&autoplay=1&loop=1&playlist=" + url + "'  frameborder='0'/>";
+    
+}
+
+function StopMusic() {
+    document.getElementById("player").innerHTML = "";
+}
+
+
+  
+
+
+</script>
+

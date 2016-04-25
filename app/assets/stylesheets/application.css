@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+td {
+    padding: 5px;
+    border: 1px;
+    border-style: solid;
+    background-color: rgba(255,240,240,1.0);
+}
+
+h2 a {
+    text-decoration: none;
+}
